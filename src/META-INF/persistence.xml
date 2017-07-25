@@ -7,6 +7,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>introsde.localdatabase.model.Measure</class>
 		<class>introsde.localdatabase.model.Person</class>	
+		<class>introsde.localdatabase.model.Activity</class>	
 
         <properties>
             <!-- the jdbc driver we will use to connect to the database 

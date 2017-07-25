@@ -2,6 +2,7 @@ package introsde.localdatabase.soap;
 
 import introsde.localdatabase.model.Measure;
 import introsde.localdatabase.model.Person;
+import introsde.localdatabase.model.Activity;
 
 import java.text.ParseException;
 import java.util.List;
@@ -130,5 +131,38 @@ public class PeopleImpl implements People {
 			return null;
 		}
 	}
-
+	
+	@Override
+	public List<Activity> readActivity(Long id) {
+		return Activity.getPersonActivity(id);
+	}
+	
+	@Override
+	public Activity createActivity(Long id, Activity a) {
+		a.setPerson(Person.getPersonById(id));
+		return Activity.saveActivity(a);
+	}
+	
+	@Override
+	public Activity updateActivity(Long id, Activity a) {
+		Activity activity = a.getActivityById(a.getIdActivity());
+		if (activity.getPerson().getIdPerson() == id) {
+			a.setPerson(Person.getPersonById(id));
+			return Activity.updateActivity(a);
+			} else {
+				return null;
+			}
+	}
+	
+	@Override 
+	public int deleteActivity(Long id) {
+		Activity a = Activity.getActivityById(id);
+		
+		if (a!=null) {
+			Activity.removeActivity(a);
+			return 0;
+		} else {
+			return -1;
+		}
+	}
 }

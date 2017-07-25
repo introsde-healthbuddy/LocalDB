@@ -12,6 +12,7 @@ import javax.jws.soap.SOAPBinding.Use;
 
 import introsde.localdatabase.model.Measure;
 import introsde.localdatabase.model.Person;
+import introsde.localdatabase.model.Activity;
 
 @WebService
 @SOAPBinding(style = Style.DOCUMENT, use=Use.LITERAL) //optional
@@ -36,10 +37,6 @@ public interface People {
     @WebResult(name="success") 
     public int deletePerson(@WebParam(name="personId") Long id);
     
-//    @WebMethod(operationName="getPersonByChatId")
-//    @WebResult(name="person") 
-//    public Person getPersonByChatId(@WebParam(name="chatId") Long chatId);
-    
     @WebMethod(operationName="getPersonById")
     @WebResult(name="person") 
     public Person getPersonById(@WebParam(name="personId") Long personId);
@@ -63,4 +60,23 @@ public interface People {
     @WebMethod(operationName="updatePersonMeasure")
     @WebResult(name="measure") 
     public Measure updatePersonMeasure(@WebParam(name="personId") Long id, @WebParam(name="measure") Measure measure);
+    
+    // Activities
+    
+    @WebMethod(operationName="createActivity")
+    @WebResult(name="activity") 
+    public Activity createActivity(@WebParam(name="personId") Long id, @WebParam(name="activity") Activity activity);
+    
+    @WebMethod(operationName="readActivity")
+    @WebResult(name="activity") 
+    public List<Activity> readActivity(@WebParam(name="personId") Long id);
+    
+    @WebMethod(operationName="updateActivity")
+    @WebResult(name="activity") 
+    public Activity updateActivity(@WebParam(name="personId") Long id, @WebParam(name="activity") Activity activity);
+    
+    @WebMethod(operationName="deleteActivity")
+    @WebResult(name="succes") 
+    public int deleteActivity(@WebParam(name="activityId") Long id);
+    
 }
